@@ -8,7 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "jest --no-cache",
-    "fix": "eslint --fix --ext .js ."
+    "fix": "eslint --fix --ext .js .",
+    "format:check": "prettier **/*.js --check",
+    "format:write": "prettier **/*.js --write"
   },
   "devDependencies": {
     "@babel/cli": "^7.26.4",

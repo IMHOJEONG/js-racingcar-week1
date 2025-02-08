@@ -5,8 +5,12 @@ describe("자동차는 이름을 상태로 가진다", () => {
     console.log("자동차 이름 테스트 시작");
   });
 
+  afterAll(() => {
+    console.log("자동차 이름 테스트 끝");
+  });
+
   describe("초기 상태 : car Location - (0,0,0)", () => {
-    it("getName() 호출 - 이름은 숫자와 영문만 가능하다.", () => {
+    test("getName() 호출 - 이름은 숫자와 영문만 가능하다.", () => {
       // given
       const name = "hojeong12";
       const errorName = "-----!!";
@@ -23,14 +27,14 @@ describe("자동차는 이름을 상태로 가진다", () => {
       const actualCarNameOne = new Car(name, location).getName();
 
       // then
-      expect(expectedCarNameOne).toEqual(actualCarNameOne);
+      expect(actualCarNameOne).toEqual(expectedCarNameOne);
       expect(() => {
         // FIXME -> goTo When
         new Car(errorName, location).getName();
       }).toThrow(expectedCarNameTwo);
     });
 
-    it("getName() 호출 - 이름은 최소 1글자, 최대 9글자이어야 한다.", () => {
+    test("getName() 호출 - 이름은 최소 1글자, 최대 9글자이어야 한다.", () => {
       // given
       const nameOne = "1";
       const nameTwo = "123456789";
@@ -51,8 +55,8 @@ describe("자동차는 이름을 상태로 가진다", () => {
       const actualCarTwoLength = carTwo.getName().length;
 
       // then
-      expect(expectedCarOneLength).toEqual(actualCarOneLength);
-      expect(expectedCarTwoLength).toEqual(actualCarTwoLength);
+      expect(actualCarOneLength).toEqual(expectedCarOneLength);
+      expect(actualCarTwoLength).toEqual(expectedCarTwoLength);
 
       // 10글자일 때
       expect(() => {
@@ -60,9 +64,5 @@ describe("자동차는 이름을 상태로 가진다", () => {
         new Car(nameThree, location).getName();
       }).toThrow(expectedCarName);
     });
-  });
-
-  afterAll(() => {
-    console.log("자동차 이름 테스트 끝");
   });
 });

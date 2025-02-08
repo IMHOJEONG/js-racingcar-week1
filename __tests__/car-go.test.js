@@ -5,6 +5,10 @@ describe("자동차는 전진할 수 있다.", () => {
     console.log("자동차 전진 테스트 시작");
   });
 
+  afterAll(() => {
+    console.log("자동차 전진 테스트 끝");
+  });
+
   describe("초기 상태 : car Location - (0,0,0)", () => {
     it("goToX() 호출: x축 방향으로, 1만큼 전진한다", () => {
       // given
@@ -26,7 +30,7 @@ describe("자동차는 전진할 수 있다.", () => {
       const actualLocation = car.getLocation();
 
       // then
-      expect(expectedCarLocation).toMatchObject(actualLocation);
+      expect(actualLocation).toMatchObject(expectedCarLocation);
     });
 
     it("goToY() 호출: y축 방향으로, 1만큼 전진한다", () => {
@@ -49,7 +53,7 @@ describe("자동차는 전진할 수 있다.", () => {
       const actualLocation = car.getLocation();
 
       // then
-      expect(expectedCarLocation).toMatchObject(actualLocation);
+      expect(actualLocation).toMatchObject(expectedCarLocation);
     });
     it("goToZ() 호출: z축 방향으로, 1만큼 전진한다", () => {
       // given
@@ -72,11 +76,7 @@ describe("자동차는 전진할 수 있다.", () => {
       const actualLocation = car.getLocation();
 
       // then
-      expect(expectedCarLocation).toMatchObject(actualLocation);
+      expect(actualLocation).toMatchObject(expectedCarLocation);
     });
-  });
-
-  afterAll(() => {
-    console.log("자동차 전진 테스트 끝");
   });
 });

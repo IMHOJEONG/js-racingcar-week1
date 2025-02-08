@@ -6,6 +6,7 @@ import {
   print,
   printWithCarName,
   isForwardOverFour,
+  printWinners,
 } from "../src/console.js";
 
 jest.mock("readline");
@@ -117,6 +118,20 @@ describe("콘솔 게임을 실행", () => {
 
       // when
       const actualResult = carObjs.map(() => isForwardOverFour());
+
+      // then
+      expect(actualResult).toEqual(expectedResult);
+    });
+
+    test("4-3. 경기 완료 후, 우승자를 출력한다.", () => {
+      // given
+      randomSpy.mockReturnValue(0.8);
+      const carObjs = makeCarObject([1, 2, 3, 4, 5], { x: 0, y: 0, z: 0 });
+      const expectedResult = ["1", "2", "3", "4", "5"];
+
+      // when
+      const gameResult = race(carObjs, 5);
+      const actualResult = printWinners(carObjs, gameResult);
 
       // then
       expect(actualResult).toEqual(expectedResult);

@@ -6,4 +6,12 @@ const carLocationRule = {
   y: /[0-100]/,
   z: /[0-100]/,
 };
-export { carNameRule, carLocationRule };
+
+const LOCATION_POINT = {
+  x: "X",
+  y: "Y",
+  z: "Z",
+  stop: "O",
+};
+
+export { carNameRule, carLocationRule, LOCATION_POINT };

@@ -1,6 +1,7 @@
 import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 import Car from "./Car.js";
+import { LOCATION_POINT } from "./rule.js";
 
 export const makeToArray = (string) =>
   string.split(",").map((val) => val.trim());
@@ -38,24 +39,38 @@ export const print = (cars, results) => {
   return newResult;
 };
 
+export const isForwardOverFour = () => Math.floor(Math.random() * 10) >= 4;
+
+export const isForward = (car) => {
+  const randomNumber = Math.floor(Math.random() * 3) + 1;
+
+  const isCar = car instanceof Car;
+
+  // x - 1, y - 2, z - 3
+  if (isCar && isForwardOverFour()) {
+    return randomNumber;
+  }
+
+  // stop - 0
+  return 0;
+};
+
 export const race = (carObjs, gameCount) => {
   const goDirection = (car) => {
-    const randomNumber = Math.floor(Math.random() * 3);
-
-    if (car instanceof Car && randomNumber === 0) {
+    if (isForward(car) === 1) {
       car.goToX();
-      return "X";
+      return LOCATION_POINT.x;
     }
-    if (car instanceof Car && randomNumber === 1) {
+    if (isForward(car) === 2) {
       car.goToY();
-      return "Y";
+      return LOCATION_POINT.y;
     }
-    if (car instanceof Car && randomNumber === 2) {
+    if (isForward(car) === 3) {
       car.goToZ();
-      return "Z";
+      return LOCATION_POINT.z;
     }
 
-    throw new Error("이동할 수 없습니다.");
+    return LOCATION_POINT.stop;
   };
 
   const carResults = Array.from({ length: gameCount }).reduce((gameResult) => {

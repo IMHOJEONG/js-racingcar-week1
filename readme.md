@@ -24,6 +24,21 @@
 
   - https://pozafly.github.io/environment/putting-rules-into-import-syntax-with-eslint/
 
+# Prettier
+
+- https://stackoverflow.com/a/53769213
+
+  - VS CODE에서 endofline 설정 
+
+  - https://stackoverflow.com/a/1552782 
+
+# JEST
+
+- toHaveLength를 통해, when 절에서 일일히 length를 구할 필요가 없음
+
+  - https://jestjs.io/docs/expect#tohavelengthnumber
+
+
 # 학습 목표
 
 - Github 기반으로 온라인 코드 리뷰
@@ -68,3 +83,14 @@
 5. 회차를 거듭할 때마다 자동차가 지나간 궤적을 출력한다(실행 예시 참고).
 
 6. 사용자가 잘못된 입력 값을 작성한 경우 프로그램을 종료한다.
+
+---
+
+# 4단계 - 자동차 경주 게임 규칙 추가 
+
+- 전진하는 조건은 0에서 9 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다.
+
+- 자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다. 우승자는 한 명 이상일 수 있다.
+
+- 우승자가 여러 명일 경우 쉼표(,)를 이용하여 구분한다.
+

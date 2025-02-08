@@ -13,6 +13,7 @@
 
     - 이것을 기준으로 채택하자
     - 널리 사용되고, Google JS 보다 더 엄격해서 선정
+    - https://github.com/airbnb/javascript?tab=readme-ov-file#types
 
   - JavaScript Standard Style
   - NHN FE개발랩
@@ -62,6 +63,8 @@
 ### 2. Given-When-Then
 
 - 준비-실행-검증
+
+  - https://brunch.co.kr/@springboot/292
 
 - 처음에 주어진 조건도 명시
 

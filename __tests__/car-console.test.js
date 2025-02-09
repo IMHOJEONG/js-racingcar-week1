@@ -3,7 +3,6 @@ import {
   makeToArray,
   race,
   makeCarObject,
-  print,
   printWithCarName,
   isForwardOverFour,
   printWinners,
@@ -63,25 +62,32 @@ describe("콘솔 게임을 실행", () => {
       const expectedGameCount = 5;
 
       // when
-      const actualGameCount = race(carObjs, 5).length;
+      const actualGameCount = race(carObjs, 5)[0].progress;
 
       // then
-      expect(actualGameCount).toBe(expectedGameCount);
+      expect(actualGameCount).toHaveLength(expectedGameCount);
     });
 
     test("4. 각 loop마다 자동차가 지나간 궤적을 기록", () => {
       // given
       const carObjs = makeCarObject([1, 2, 3], { x: 0, y: 0, z: 0 });
-      const expectedResult = ["YXXYY", "YZZZZ", "YZZYY"];
+      const expectedResult = [
+        {
+          name: 1,
+          progress: ["O", "O", "O", "O", "O"],
+        },
+        {
+          name: 2,
+          progress: ["O", "O", "O", "O", "O"],
+        },
+        {
+          name: 3,
+          progress: ["O", "O", "O", "O", "O"],
+        },
+      ];
 
       // when
-      const actualResult = print(carObjs, [
-        ["Y", "Y", "Y"],
-        ["X", "Z", "Z"],
-        ["X", "Z", "Z"],
-        ["Y", "Z", "Y"],
-        ["Y", "Z", "Y"],
-      ]);
+      const actualResult = race(carObjs, 5);
 
       // then
       expect(actualResult).toEqual(expectedResult);
@@ -104,10 +110,10 @@ describe("콘솔 게임을 실행", () => {
       const expectedResultLength = 5;
 
       // when
-      const actualResultLength = race(carObjs, 5)[0].join("").length;
+      const actualResultLength = race(carObjs, 5)[0].progress;
 
       // then
-      expect(actualResultLength).toBe(expectedResultLength);
+      expect(actualResultLength).toHaveLength(expectedResultLength);
     });
 
     test("4-2. 전진하는 조건은 0에서 9 사이에서 무작위 값 중 4 이상인 경우", () => {
@@ -131,7 +137,7 @@ describe("콘솔 게임을 실행", () => {
 
       // when
       const gameResult = race(carObjs, 5);
-      const actualResult = printWinners(carObjs, gameResult);
+      const actualResult = printWinners(gameResult);
 
       // then
       expect(actualResult).toEqual(expectedResult);

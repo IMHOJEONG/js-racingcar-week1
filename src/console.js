@@ -10,7 +10,7 @@ export const isNameLessThanFive = (items) =>
   items.every((item) => item.length <= 5);
 
 export const getCars = async (read) => {
-  const carName = await read.question("경주할 자동차 이름을 입력하세요.");
+  const carName = await read.question("경주할 자동차 이름을 입력하세요.\n");
   return carName;
 };
 
@@ -23,18 +23,13 @@ export const checkCarNames = (cars) => {
 export const makeCarObject = (cars, position) =>
   cars.map((name) => new Car(name, position));
 
-export const printWithCarName = (carName, result) => `${carName}: ${result}`;
+export const printWithCarName = (carName, result) => {
+  const printFormat = `${carName}: ${result}`;
+  console.log("");
+  console.log(printFormat);
+  console.log("");
 
-export const print = (cars, results) => {
-  const newResult = cars.map((car, index) =>
-    results.map((row) => row[index]).join(""),
-  );
-
-  cars.forEach((car, index) => {
-    console.log(printWithCarName(car.getName(), newResult[index]));
-  });
-
-  return newResult;
+  return printFormat;
 };
 
 export const isForwardOverFour = () => Math.floor(Math.random() * 10) >= 4;
@@ -53,50 +48,62 @@ export const isForward = (car) => {
   return 0;
 };
 
+const goDirection = (car) => {
+  if (isForward(car) === 1) {
+    car.goToX();
+    return LOCATION_POINT.x;
+  }
+  if (isForward(car) === 2) {
+    car.goToY();
+    return LOCATION_POINT.y;
+  }
+  if (isForward(car) === 3) {
+    car.goToZ();
+    return LOCATION_POINT.z;
+  }
+
+  return LOCATION_POINT.stop;
+};
+
 export const race = (carObjs, gameCount) => {
-  const goDirection = (car) => {
-    if (isForward(car) === 1) {
-      car.goToX();
-      return LOCATION_POINT.x;
-    }
-    if (isForward(car) === 2) {
-      car.goToY();
-      return LOCATION_POINT.y;
-    }
-    if (isForward(car) === 3) {
-      car.goToZ();
-      return LOCATION_POINT.z;
-    }
+  const initialGameResult = carObjs.map((car) => ({
+    name: car.getName(),
+    progress: [],
+  }));
 
-    return LOCATION_POINT.stop;
-  };
+  const results = initialGameResult.map((car) => {
+    const newProgress = Array.from({ length: gameCount }).reduce(
+      (allGameResult, perGameResult) => {
+        allGameResult.push(goDirection(car));
 
-  const carResults = Array.from({ length: gameCount }).reduce((gameResult) => {
-    const results = carObjs.map((car) => goDirection(car));
+        return allGameResult;
+      },
+      [],
+    );
 
-    gameResult.push(results);
-    console.log("");
-    print(carObjs, gameResult);
-    console.log("");
-    return gameResult;
-  }, []);
-  return carResults;
+    const carResult = {
+      ...car,
+      progress: newProgress,
+    };
+    printWithCarName(carResult.name, carResult.progress);
+
+    return carResult;
+  });
+
+  return results;
 };
 
 export const printExitMessage = (string) => {
   console.log(string);
 };
 
-export const printWinners = (carObjs, results) => {
-  const newResult = carObjs.map((car, index) =>
-    results.map((row) => row[index]).join(""),
-  );
-
+export const printWinners = (gameResults) => {
   const result = {};
 
-  carObjs.forEach((car, index) => {
-    const filteredResult = newResult[index].replace("O", "").length;
-    result[car.getName()] = filteredResult;
+  gameResults.forEach((perGameResult) => {
+    const { name, progress } = perGameResult;
+    const filteredResult = progress.filter((val) => val !== "O").length;
+    result[name] = filteredResult;
   });
 
   const keyValueArray = Object.entries(result);
@@ -133,7 +140,7 @@ export const play = async () => {
   printExitMessage("경주를 완료했습니다.");
   printExitMessage("우승자는 다음과 같습니다.");
 
-  printWinners(carObjs, gameResult);
+  printWinners(gameResult);
 
   read.close();
 };

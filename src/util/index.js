@@ -8,6 +8,8 @@ export const printWithCarName = (carName, result) => {
   return printFormat;
 };
 
+export const isRandomOverThanInteger = (min, max, threshold) => Math.floor(Math.random() * (max+1)) + min >= threshold;
+
 export const isNameLessThanThreshold = (items, threshold) =>
   items.every((item) => item.length <= threshold);
 

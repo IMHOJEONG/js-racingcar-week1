@@ -26,21 +26,24 @@ export const checkCarNames = (cars) => {
 export const makeCarObject = (cars, position) =>
   cars.map((name) => new Car(name, position));
 
-export const isForwardOverFour = () => Math.floor(Math.random() * 10) >= 4;
+
 
 export const isForward = (car) => {
-  const randomNumber = Math.floor(Math.random() * 3) + 1;
-
+  
   const isCar = car instanceof Car;
 
-  // x - 1, y - 2, z - 3
-  if (isCar && isForwardOverFour()) {
-    return randomNumber;
+  if (isCar && isRandomOverThanInteger(FORWARD_CONDITION.min, FORWARD_CONDITION.max, FORWARD_CONDITION.threshold)) {
+
+    // x - 1, y - 2, z - 3
+    const DIRECTION_LENGTH = Object.keys(DIRECTION)
+    const xyzDirection = Math.floor(Math.random() * DIRECTION_LENGTH) + 1;
+    return xyzDirection;
   }
 
   // stop - 0
-  return 0;
+  return DIRECTION.stop;
 };
+
 
 const goDirection = (car) => {
   if (isForward(car) === 1) {

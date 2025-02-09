@@ -1,7 +1,7 @@
-import Car from "../Car";
+import Car from "../Car.js";
 
-import { printWithCarName, isNameLessThanFive } from "../util/index";
-import { LOCATION_POINT } from "../rule";
+import { printWithCarName, isNameLessThanFive } from "../util/index.js";
+import { LOCATION_POINT } from "../rule.js";
 
 export const getCars = async (read) => {
   const carName = await read.question("경주할 자동차 이름을 입력하세요.\n");
@@ -76,6 +76,7 @@ export const printWinners = (gameResults) => {
 
 export const race = (carObjs, gameCount) => {
   const initialGameResult = carObjs.map((car) => ({
+    carObject: car,
     name: car.getName(),
     progress: [],
   }));
@@ -83,7 +84,7 @@ export const race = (carObjs, gameCount) => {
   const results = initialGameResult.map((car) => {
     const newProgress = Array.from({ length: gameCount }).reduce(
       (allGameResult) => {
-        allGameResult.push(goDirection(car));
+        allGameResult.push(goDirection(car.carObject));
 
         return allGameResult;
       },

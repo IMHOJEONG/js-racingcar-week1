@@ -1,3 +1,3 @@
-import { play } from "./console";
+import play from "./console.js";
 
 play();

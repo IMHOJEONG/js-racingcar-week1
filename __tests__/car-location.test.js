@@ -1,4 +1,4 @@
-import Car from "../src/Car";
+import Car from "../src/Car.js";
 
 describe("자동차는 위치 값을 가진다.", () => {
   beforeAll(() => {

@@ -3,7 +3,8 @@ import {
   race,
   isForwardOverFour,
   printWinners,
-} from "../../src/domain";
+} from "../../src/domain/index.js";
+import Car from "../../src/Car.js";
 
 jest.mock("readline");
 
@@ -32,17 +33,21 @@ describe("콘솔 게임을 실행 - domain 함수 검사사", () => {
 
     test("2. 각 loop마다 자동차가 지나간 궤적을 기록", () => {
       // given
+      randomSpy.mockReturnValue(0.2);
       const carObjs = makeCarObject([1, 2, 3], { x: 0, y: 0, z: 0 });
       const expectedResult = [
         {
+          carObject: new Car(1, { x: 0, y: 0, z: 0 }),
           name: 1,
           progress: ["O", "O", "O", "O", "O"],
         },
         {
+          carObject: new Car(2, { x: 0, y: 0, z: 0 }),
           name: 2,
           progress: ["O", "O", "O", "O", "O"],
         },
         {
+          carObject: new Car(3, { x: 0, y: 0, z: 0 }),
           name: 3,
           progress: ["O", "O", "O", "O", "O"],
         },

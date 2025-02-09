@@ -1,4 +1,4 @@
-import { carLocationRule, carNameRule } from "./rule.js";
+import { carLocationRule, carNameRule } from "./rule";
 
 class Car {
   #name;

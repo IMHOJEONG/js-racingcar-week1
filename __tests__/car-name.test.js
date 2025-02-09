@@ -1,4 +1,4 @@
-import Car from "../src/Car.js";
+import Car from "../src/Car";
 
 describe("자동차는 이름을 상태로 가진다", () => {
   beforeAll(() => {

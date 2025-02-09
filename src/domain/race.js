@@ -1,7 +1,7 @@
-import Car from "../Car.js";
+import Car from "../Car";
 
-import { printWithCarName, isNameLessThanFive } from "../util/index.js";
-import { LOCATION_POINT } from "../rule.js";
+import { printWithCarName, isNameLessThanFive } from "../util/index";
+import { LOCATION_POINT } from "../rule";
 
 export const getCars = async (read) => {
   const carName = await read.question("경주할 자동차 이름을 입력하세요.\n");

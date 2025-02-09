@@ -3,7 +3,7 @@ import {
   race,
   isForwardOverFour,
   printWinners,
-} from "../../src/domain/race.js";
+} from "../../src/domain";
 
 jest.mock("readline");
 

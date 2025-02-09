@@ -2,7 +2,7 @@ import {
   makeToArray,
   isNameLessThanFive,
   printWithCarName,
-} from "../../src/util/index.js";
+} from "../../src/util";
 
 jest.mock("readline");
 

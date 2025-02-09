@@ -1,14 +1,14 @@
 import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 
-import { printExitMessage, makeToArray } from "./util/index.js";
+import { printExitMessage, makeToArray } from "./util";
 import {
   printWinners,
   getCars,
   checkCarNames,
   makeCarObject,
   race,
-} from "./domain/race.js";
+} from "./domain";
 
 const play = async () => {
   const read = readline.createInterface({

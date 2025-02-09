@@ -4,14 +4,14 @@ import {
   printWithCarName,
 } from "../../src/util";
 
+import readline from "../../__mocks__/readline";
+
 jest.mock("readline");
 
 describe("콘솔 게임을 실행", () => {
-  let readline;
   let read;
   let randomSpy;
   beforeAll(async () => {
-    readline = (await import("readline")).default;
     read = readline.createInterface();
     randomSpy = jest.spyOn(Math, "random").mockReturnValue(0.5);
   });

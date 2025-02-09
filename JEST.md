@@ -93,3 +93,15 @@ describe("generateRandomNumber", () => {
 - **`jest.spyOn()`**을 사용하면 특정 함수(예: `Math.random` 또는 다른 함수)만 모킹하고, 다른 부분은 그대로 두면서 테스트할 수 있습니다.
 - 모킹이 끝난 후 **`mockRestore()`**를 호출하여 원래 상태로 복원하여 다른 테스트에 영향을 주지 않도록 할 수 있습니다.
 - 전역 객체나 함수 자체를 모킹하는 것이 아니라, 특정 함수만 모킹하려면 `jest.spyOn()`을 사용하는 것이 안전하고 효과적인 방법입니다.
+
+---
+
+## 비동기 JEST 처리
+
+- https://dev.to/darkmavis1980/how-to-test-an-async-function-to-throw-an-exception-in-jest-3a90
+
+- https://jestjs.io/docs/asynchronous#resolves-rejects
+
+- https://github.com/jestjs/jest/issues/5538#issuecomment-461013424
+
+  - 최대한 공식문서를 참조하여 해결한다

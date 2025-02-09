@@ -13,10 +13,7 @@
 
     - 이것을 기준으로 채택하자
     - 널리 사용되고, Google JS 보다 더 엄격해서 선정
-<<<<<<< HEAD
     - https://github.com/airbnb/javascript?tab=readme-ov-file#types
-=======
->>>>>>> upstream/imhojeong
 
   - JavaScript Standard Style
   - NHN FE개발랩
@@ -91,12 +88,26 @@
 
 ---
 
-## 비동기 JEST 처리
+## 3주차 보완점
 
-- https://dev.to/darkmavis1980/how-to-test-an-async-function-to-throw-an-exception-in-jest-3a90
+1. describe 별로 파일을 분리할 필요는 없음
 
-- https://jestjs.io/docs/asynchronous#resolves-rejects
+- 일관된 기준을 세울 것 = 하나의 시나리오 (하나의 문장으로 끝나면 나누기를 해보자) 기준으로 설정해보자
 
-- https://github.com/jestjs/jest/issues/5538#issuecomment-461013424
+2. 테스트 코드 먼저 작성해보기
 
-  - 최대한 공식문서를 참조하여 해결한다
+- 아마도 TDD를 얘기주시는 부분으로 이해가 됩니다.
+
+- "스펙"으로써 테스트 코드를 먼저 작성해보자 (구현을 먼저 하는 습관이 있기 때문에, 변경이 필요함)
+
+  1. 구현해야 할 동작 `한 가지`만을 테스트 하는 케이스 및 코드를 작성
+
+  2. 이를 만족시키는 함수를 작성하자
+
+- 함수 위계에 따라 모듈 나누기
+
+  1. 하나의 케이스에서 동시에 여러 함수를 호출하려고 함
+
+  - 하나의 함수만 하나의 케이스에서 호출할 것
+
+  - 최대한 폴더 별로 분리해서 테스트해 보는 방법으로 구현해보자자

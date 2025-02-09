@@ -1,4 +1,4 @@
-const obj = {
+const readline = {
   createInterface: jest.fn().mockReturnValue({
     question: jest.fn((questionText, input) => {
       // TODO: 콘솔 출력을 위한 코드
@@ -9,4 +9,4 @@ const obj = {
   }),
 };
 
-export default obj;
+export default readline;

@@ -75,30 +75,25 @@ export const printWinners = (gameResults) => {
 };
 
 export const race = (carObjs, gameCount) => {
-  const initialGameResult = carObjs.map((car) => ({
+  let totalResult = carObjs.map((car) => ({
     carObject: car,
     name: car.getName(),
     progress: [],
   }));
 
-  const results = initialGameResult.map((car) => {
-    const newProgress = Array.from({ length: gameCount }).reduce(
-      (allGameResult) => {
-        allGameResult.push(goDirection(car.carObject));
+  Array.from({ length: gameCount }).forEach(() => {
+    const results = totalResult.map((car) => {
+      const newProgress = goDirection(car.carObject);
+      const carResult = {
+        ...car,
+        progress: [...car.progress, newProgress],
+      };
+      printWithCarName(carResult.name, carResult.progress);
+      return carResult;
+    });
 
-        return allGameResult;
-      },
-      [],
-    );
-
-    const carResult = {
-      ...car,
-      progress: newProgress,
-    };
-    printWithCarName(carResult.name, carResult.progress);
-
-    return carResult;
+    totalResult = results;
   });
 
-  return results;
+  return totalResult;
 };

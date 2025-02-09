@@ -23,8 +23,6 @@ export const checkCarNames = (cars) => {
 export const makeCarObject = (cars, position) =>
   cars.map((name) => new Car(name, position));
 
-export const goForward = (cars, predicate) => cars.map((car) => predicate(car));
-
 export const printWithCarName = (carName, result) => `${carName}: ${result}`;
 
 export const print = (cars, results) => {
@@ -74,7 +72,7 @@ export const race = (carObjs, gameCount) => {
   };
 
   const carResults = Array.from({ length: gameCount }).reduce((gameResult) => {
-    const results = goForward(carObjs, goDirection);
+    const results = carObjs.map((car) => goDirection(car));
 
     gameResult.push(results);
     console.log("");

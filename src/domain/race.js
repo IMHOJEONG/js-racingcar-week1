@@ -1,6 +1,5 @@
 import Car from "../Car.js";
 
-import { LOCATION_POINT } from "../rule.js";
 import {
   isNameLessThanThreshold,
   printExceedNameLength,
@@ -9,7 +8,9 @@ import {
   printWithCarName,
   SEPARATED_COMMA,
   START_RACE_MESSAGE,
+  printWithCarName, isRandomOverThanInteger
 } from "../util/index.js";
+import { DIRECTION, FORWARD_CONDITION, LOCATION_POINT } from "../rule.js";
 
 export const getCars = async (read) => {
   const carName = await read.question(`${START_RACE_MESSAGE}\n`);
@@ -25,7 +26,6 @@ export const checkCarNames = (cars) => {
 
 export const makeCarObject = (cars, position) =>
   cars.map((name) => new Car(name, position));
-
 
 
 export const isForward = (car) => {
@@ -46,15 +46,15 @@ export const isForward = (car) => {
 
 
 const goDirection = (car) => {
-  if (isForward(car) === 1) {
+  if (isForward(car) === DIRECTION.x) {
     car.goToX();
     return LOCATION_POINT.x;
   }
-  if (isForward(car) === 2) {
+  if (isForward(car) === DIRECTION.y) {
     car.goToY();
     return LOCATION_POINT.y;
   }
-  if (isForward(car) === 3) {
+  if (isForward(car) === DIRECTION.z) {
     car.goToZ();
     return LOCATION_POINT.z;
   }

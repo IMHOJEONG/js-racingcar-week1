@@ -8,8 +8,6 @@ export const printWithCarName = (carName, result) => {
   return printFormat;
 };
 
-export const isRandomOverThanInteger = (min, max, threshold) => Math.floor(Math.random() * (max+1)) + min >= threshold;
-
 export const isNameLessThanThreshold = (items, threshold) =>
   items.every((item) => item.length <= threshold);
 
@@ -28,3 +26,4 @@ export const printWinnerMessage = (winner) =>
   winner ? `${winner}가 최종 우승했습니다.` : `우승자가 존재하지 않습니다,`;
 
 export const SEPARATED_COMMA = ",";
+export const isRandomOverThanInteger = (min, max, threshold) => Math.floor(Math.random() * (max+1)) + min >= threshold;

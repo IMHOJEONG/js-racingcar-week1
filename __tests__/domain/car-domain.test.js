@@ -3,9 +3,11 @@ import {
   race,
   isForwardOverFour,
   printWinners,
+  isForwardEnable,
 } from "../../src/domain/index.js";
 import Car from "../../src/Car.js";
-import { LOCATION_POINT } from "../../src/rule.js";
+import { LOCATION_POINT, FORWARD_CONDITION } from "../../src/rule.js";
+import { isRandomOverThanInteger } from "../../src/util/index.js";
 
 jest.mock("readline");
 
@@ -83,7 +85,7 @@ describe("콘솔 게임을 실행 - domain 함수 검사사", () => {
       const expectedResult = [true, true, true, true, true];
 
       // when
-      const actualResult = carObjs.map(() => isForwardOverFour());
+      const actualResult = carObjs.map(() => isRandomOverThanInteger(FORWARD_CONDITION.min, FORWARD_CONDITION.max, FORWARD_CONDITION.threshold));
 
       // then
       expect(actualResult).toEqual(expectedResult);

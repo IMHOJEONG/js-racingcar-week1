@@ -28,16 +28,15 @@
 
 - https://stackoverflow.com/a/53769213
 
-  - VS CODE에서 endofline 설정 
+  - VS CODE에서 endofline 설정
 
-  - https://stackoverflow.com/a/1552782 
+  - https://stackoverflow.com/a/1552782
 
 # JEST
 
 - toHaveLength를 통해, when 절에서 일일히 length를 구할 필요가 없음
 
   - https://jestjs.io/docs/expect#tohavelengthnumber
-
 
 # 학습 목표
 
@@ -86,7 +85,7 @@
 
 ---
 
-# 4단계 - 자동차 경주 게임 규칙 추가 
+# 4단계 - 자동차 경주 게임 규칙 추가
 
 - 전진하는 조건은 0에서 9 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다.
 
@@ -94,3 +93,14 @@
 
 - 우승자가 여러 명일 경우 쉼표(,)를 이용하여 구분한다.
 
+---
+
+# 5단계 - 리팩터링
+
+- 도메인 로직은 domain/ 하위로, UI 관련 로직은 view/ 하위에서 관리한다.
+
+  - domain/ 하위의 모듈은 view/ 하위의 모듈을 의존하지 않아야 한다.
+  
+  - 도메인 로직 내에서 테스트하기 어려운 부분을 분리하고, 테스트 가능한 부분에 대해서만 단위 테스트를 작성한다.
+
+- 테스트 코드에서 jest.fn()을 사용하지 않는다.

@@ -5,6 +5,7 @@ import {
   printWinners,
 } from "../../src/domain/index.js";
 import Car from "../../src/Car.js";
+import { LOCATION_POINT } from "../../src/rule.js";
 
 jest.mock("readline");
 
@@ -35,21 +36,24 @@ describe("콘솔 게임을 실행 - domain 함수 검사사", () => {
       // given
       randomSpy.mockReturnValue(0.2);
       const carObjs = makeCarObject([1, 2, 3], { x: 0, y: 0, z: 0 });
+      const expectedProgress = Array.from({ length: 5 }).fill(
+        LOCATION_POINT.stop,
+      );
       const expectedResult = [
         {
           carObject: new Car(1, { x: 0, y: 0, z: 0 }),
           name: 1,
-          progress: ["O", "O", "O", "O", "O"],
+          progress: expectedProgress,
         },
         {
           carObject: new Car(2, { x: 0, y: 0, z: 0 }),
           name: 2,
-          progress: ["O", "O", "O", "O", "O"],
+          progress: expectedProgress,
         },
         {
           carObject: new Car(3, { x: 0, y: 0, z: 0 }),
           name: 3,
-          progress: ["O", "O", "O", "O", "O"],
+          progress: expectedProgress,
         },
       ];
 

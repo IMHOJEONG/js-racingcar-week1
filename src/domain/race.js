@@ -1,16 +1,25 @@
 import Car from "../Car.js";
 
-import { printWithCarName, isNameLessThanFive } from "../util/index.js";
 import { LOCATION_POINT } from "../rule.js";
+import {
+  isNameLessThanThreshold,
+  printExceedNameLength,
+  printMessage,
+  printWinnerMessage,
+  printWithCarName,
+  SEPARATED_COMMA,
+  START_RACE_MESSAGE,
+} from "../util/index.js";
 
 export const getCars = async (read) => {
-  const carName = await read.question("경주할 자동차 이름을 입력하세요.\n");
+  const carName = await read.question(`${START_RACE_MESSAGE}\n`);
+  printMessage("");
   return carName;
 };
 
 export const checkCarNames = (cars) => {
-  if (isNameLessThanFive(cars) === false) {
-    throw new Error("자동차 이름이 5자를 초과합니다.");
+  if (isNameLessThanThreshold(cars, 5) === false) {
+    throw new Error(printExceedNameLength(5));
   }
 };
 
@@ -55,7 +64,9 @@ export const printWinners = (gameResults) => {
 
   gameResults.forEach((perGameResult) => {
     const { name, progress } = perGameResult;
-    const filteredResult = progress.filter((val) => val !== "O").length;
+    const filteredResult = progress.filter(
+      (val) => val !== LOCATION_POINT.stop,
+    ).length;
     result[name] = filteredResult;
   });
 
@@ -67,9 +78,9 @@ export const printWinners = (gameResults) => {
     .filter(([, value]) => value === maxValue)
     .map((item) => item.at(0));
 
-  const commaJoinedString = filteredWinners.join(",");
+  const commaJoinedString = filteredWinners.join(SEPARATED_COMMA);
 
-  console.log(`${commaJoinedString}가 최종 우승했습니다.`);
+  console.log(printWinnerMessage(commaJoinedString));
 
   return filteredWinners;
 };
@@ -88,12 +99,14 @@ export const race = (carObjs, gameCount) => {
         ...car,
         progress: [...car.progress, newProgress],
       };
+
       printWithCarName(carResult.name, carResult.progress);
+
       return carResult;
     });
 
     totalResult = results;
+    printMessage("");
   });
-
   return totalResult;
 };

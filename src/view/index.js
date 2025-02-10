@@ -1,14 +1,19 @@
 import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
 
-import { printExitMessage, makeToArray } from "./util/index.js";
+import {
+  printMessage,
+  makeToArray,
+  FINISH_RACE_MESSAGE,
+  PRINT_WINNER_INTRO_MESSAGE,
+} from "../util/index.js";
 import {
   printWinners,
   getCars,
   checkCarNames,
   makeCarObject,
   race,
-} from "./domain/index.js";
+} from "../domain/index.js";
 
 const play = async () => {
   const read = readline.createInterface({
@@ -26,8 +31,8 @@ const play = async () => {
 
   const gameResult = race(carObjs, 5);
 
-  printExitMessage("경주를 완료했습니다.");
-  printExitMessage("우승자는 다음과 같습니다.");
+  printMessage(FINISH_RACE_MESSAGE);
+  printMessage(PRINT_WINNER_INTRO_MESSAGE);
 
   printWinners(gameResult);
 

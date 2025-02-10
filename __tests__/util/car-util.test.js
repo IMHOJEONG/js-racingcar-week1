@@ -1,6 +1,6 @@
 import {
   makeToArray,
-  isNameLessThanFive,
+  isNameLessThanThreshold,
   printWithCarName,
 } from "../../src/util/index.js";
 
@@ -48,7 +48,7 @@ describe("콘솔 게임을 실행", () => {
       const expectedResult = false;
 
       const response = await read.question(input, carName);
-      const actualResult = isNameLessThanFive(makeToArray(response));
+      const actualResult = isNameLessThanThreshold(makeToArray(response), 5);
       expect(actualResult).toBe(expectedResult);
     });
 

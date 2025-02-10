@@ -11,7 +11,7 @@ const LOCATION_POINT = {
   x: "X",
   y: "Y",
   z: "Z",
-  stop: "O",
+  stop: "STOP",
 };
 
 export { carNameRule, carLocationRule, LOCATION_POINT };

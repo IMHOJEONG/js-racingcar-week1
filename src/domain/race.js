@@ -7,16 +7,9 @@ import {
   printWinnerMessage,
   printWithCarName,
   SEPARATED_COMMA,
-  START_RACE_MESSAGE,
-  printWithCarName, isRandomOverThanInteger
+  isRandomOverThanInteger
 } from "../util/index.js";
 import { DIRECTION, FORWARD_CONDITION, LOCATION_POINT } from "../rule.js";
-
-export const getCars = async (read) => {
-  const carName = await read.question(`${START_RACE_MESSAGE}\n`);
-  printMessage("");
-  return carName;
-};
 
 export const checkCarNames = (cars) => {
   if (isNameLessThanThreshold(cars, 5) === false) {
@@ -31,11 +24,10 @@ export const makeCarObject = (cars, position) =>
 export const isForward = (car) => {
   
   const isCar = car instanceof Car;
-
   if (isCar && isRandomOverThanInteger(FORWARD_CONDITION.min, FORWARD_CONDITION.max, FORWARD_CONDITION.threshold)) {
 
     // x - 1, y - 2, z - 3
-    const DIRECTION_LENGTH = Object.keys(DIRECTION)
+    const DIRECTION_LENGTH = Object.keys(DIRECTION).length
     const xyzDirection = Math.floor(Math.random() * DIRECTION_LENGTH) + 1;
     return xyzDirection;
   }
@@ -45,16 +37,17 @@ export const isForward = (car) => {
 };
 
 
-const goDirection = (car) => {
-  if (isForward(car) === DIRECTION.x) {
+export const goDirection = (car, direction) => {
+  
+  if (direction === DIRECTION.x) {
     car.goToX();
     return LOCATION_POINT.x;
   }
-  if (isForward(car) === DIRECTION.y) {
+  if (direction === DIRECTION.y) {
     car.goToY();
     return LOCATION_POINT.y;
   }
-  if (isForward(car) === DIRECTION.z) {
+  if (direction === DIRECTION.z) {
     car.goToZ();
     return LOCATION_POINT.z;
   }
@@ -97,7 +90,7 @@ export const race = (carObjs, gameCount) => {
 
   Array.from({ length: gameCount }).forEach(() => {
     const results = totalResult.map((car) => {
-      const newProgress = goDirection(car.carObject);
+      const newProgress = goDirection(car.carObject, isForward(car.carObject));
       const carResult = {
         ...car,
         progress: [...car.progress, newProgress],

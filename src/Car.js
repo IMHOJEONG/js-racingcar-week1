@@ -27,7 +27,7 @@ class Car {
       carLocationRule.y.test(location.y),
       carLocationRule.z.test(location.z),
     ].every((rule) => rule);
-
+    console.log(carLocationRule.x.test(location.x), isProperLocation)
     if (isProperLocation === false) {
       throw new Error("설정할 수 없는 위치입니다.");
     }

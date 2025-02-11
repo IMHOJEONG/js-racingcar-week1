@@ -1,10 +1,11 @@
 const carNameRule = /^[a-zA-Z0-9]{1,9}$/;
 
-// FIXME: Please Write This Test Code
+const locationRegex = /^(0|[1-9][0-9]?|100)$/;
+
 const carLocationRule = {
-  x: /[0-100]/,
-  y: /[0-100]/,
-  z: /[0-100]/,
+  x: locationRegex,
+  y: locationRegex,
+  z: locationRegex,
 };
 
 // 0,1,2,3

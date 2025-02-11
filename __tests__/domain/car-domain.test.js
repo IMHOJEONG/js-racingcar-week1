@@ -1,17 +1,19 @@
-import {
-  makeCarObject,
-  race,
-  isForwardOverFour,
-  printWinners,
-  isForwardEnable,
-} from "../../src/domain/index.js";
 import Car from "../../src/Car.js";
-import { LOCATION_POINT, FORWARD_CONDITION } from "../../src/rule.js";
+import {
+
+  makeCarObject,
+  printWinners,
+  race,
+  checkCarNames,
+  goDirection
+} from "../../src/domain/index.js";
+import { DIRECTION, FORWARD_CONDITION, LOCATION_POINT } from "../../src/rule.js";
 import { isRandomOverThanInteger } from "../../src/util/index.js";
 
 jest.mock("readline");
 
-describe("콘솔 게임을 실행 - domain 함수 검사사", () => {
+describe("콘솔 게임을 실행 - domain 함수 검사", () => {
+
   let randomSpy;
   beforeAll(async () => {
     randomSpy = jest.spyOn(Math, "random").mockReturnValue(0.5);
@@ -21,7 +23,20 @@ describe("콘솔 게임을 실행 - domain 함수 검사사", () => {
     randomSpy.mockRestore();
   });
 
+
   describe("초기 상태 : car Location - (0,0,0)", () => {
+  
+    test("0. 대상 자동차를 생성한다.", () => {
+      // export const makeCarObject = (cars, position) =>
+      //   cars.map((name) => new Car(name, position));
+      const actualCarObjs = makeCarObject([1, 2, 3], { x: 0, y: 0, z: 0 });
+
+      expect(actualCarObjs[0]).toBeInstanceOf(Car);
+      expect(actualCarObjs[1]).toBeInstanceOf(Car);
+      expect(actualCarObjs[2]).toBeInstanceOf(Car);
+
+
+    });
     test("1. 자동차 경주는 5회로 고정하여 진행", () => {
       // given
       const carObjs = makeCarObject([1, 2, 3], { x: 0, y: 0, z: 0 });
@@ -111,5 +126,48 @@ describe("콘솔 게임을 실행 - domain 함수 검사사", () => {
         makeCarObject(["!!", 2, 3, 4, 5], { x: 0, y: 0, z: 0 });
       }).toThrow("생성할 수 없는 이름입니다.");
     });
+    test("3-1. 사용자가 길이 5이상 이름 작성 시, 에러를 출력", () => {
+      // given
+      const names = ['1', '2', '3'];
+      const numberNames = [1,2,3]
+      const overFiveLengthNames = [123456]
+
+      expect(() => {
+        checkCarNames(names)
+      }).not.toThrow("생성할 수 없는 이름입니다.");
+      
+      expect(() => {
+        checkCarNames(numberNames)
+      }).not.toThrow("생성할 수 없는 이름입니다.");
+      
+      expect(() => {
+        checkCarNames(overFiveLengthNames)
+      }).not.toThrow("생성할 수 없는 이름입니다.");
+    });
+
+    describe("이동 방향 검사", ()=>{
+      test("4-1. x축으로 이동하였는지 검사", () => {
+     
+        const carObjs = makeCarObject([1, 2, 3], { x: 0, y: 0, z: 0 });
+        const oneCar = goDirection(carObjs[0], DIRECTION.x);
+  
+        expect(oneCar).toBe("X")
+      });
+      test("4-2. y축으로 이동하였는지 검사", () => {
+       
+        const carObjs = makeCarObject([1, 2, 3], { x: 0, y: 0, z: 0 });
+        const oneCar = goDirection(carObjs[0], DIRECTION.y);
+  
+        expect(oneCar).toBe("Y")
+      });
+      test("4-2. z축으로 이동하였는지 검사", () => {
+       
+        const carObjs = makeCarObject([1, 2, 3], { x: 0, y: 0, z: 0 });
+        const oneCar = goDirection(carObjs[0], DIRECTION.z);
+  
+        expect(oneCar).toBe("Z")
+      });
+    })
+   
   });
 });

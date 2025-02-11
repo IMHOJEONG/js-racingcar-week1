@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "jest --no-cache",
+    "test:coverage": "jest --coverage",
     "fix": "eslint --fix --ext .js .",
     "format:check": "prettier **/*.js --check",
     "format:write": "prettier **/*.js --write"

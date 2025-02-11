@@ -9,6 +9,8 @@ describe("자동차는 위치 값을 가진다.", () => {
     console.log("자동차 위치 테스트 끝");
   });
 
+  
+
   describe("초기 상태 : car Location - (0,0,0)", () => {
     test("getName(), getLocation() 호출 - 초기 이름, 위치 값 설정", () => {
       // given
@@ -35,4 +37,24 @@ describe("자동차는 위치 값을 가진다.", () => {
       expect(actualLocation).toMatchObject(expectedLocation);
     });
   });
+
+  describe("적절한 상태인지 검사 : car Location - (-1,-1,-1)", () => {
+    test("비공개 함수인 setLocation 메서드 호출", () => {
+      // given
+      const name = "hojeong";
+      const location = {
+        x: -1,
+        y: -1,
+        z: -1,
+      };
+
+      const expectedThrownData = "설정할 수 없는 위치입니다."
+
+      // then
+      expect(() => {
+        // FIXME -> goTo When
+        new Car(name, location).getName();
+      }).toThrow(expectedThrownData);
+    })
+  })
 });

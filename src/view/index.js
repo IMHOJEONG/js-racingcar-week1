@@ -6,10 +6,10 @@ import {
   makeToArray,
   FINISH_RACE_MESSAGE,
   PRINT_WINNER_INTRO_MESSAGE,
+  getCars
 } from "../util/index.js";
 import {
   printWinners,
-  getCars,
   checkCarNames,
   makeCarObject,
   race,

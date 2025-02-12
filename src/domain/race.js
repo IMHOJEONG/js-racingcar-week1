@@ -9,11 +9,11 @@ import {
   SEPARATED_COMMA,
   isRandomOverThanInteger
 } from "../util/index.js";
-import { DIRECTION, FORWARD_CONDITION, LOCATION_POINT } from "../rule.js";
+import { DIRECTION, FORWARD_CONDITION, LOCATION_POINT, NAME_RULE } from "../rule.js";
 
 export const checkCarNames = (cars) => {
-  if (isNameLessThanThreshold(cars, 5) === false) {
-    throw new Error(printExceedNameLength(5));
+  if (isNameLessThanThreshold(cars, NAME_RULE.length) === false) {
+    throw new Error(printExceedNameLength(NAME_RULE.length));
   }
 };
 

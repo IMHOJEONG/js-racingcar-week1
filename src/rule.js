@@ -29,4 +29,8 @@ const FORWARD_CONDITION = {
   threshold: 4
 }
 
-export { carNameRule, carLocationRule, LOCATION_POINT, DIRECTION, FORWARD_CONDITION };
+const NAME_RULE = {
+  length: 5
+}
+
+export { carNameRule, carLocationRule, LOCATION_POINT, DIRECTION, FORWARD_CONDITION, NAME_RULE };
